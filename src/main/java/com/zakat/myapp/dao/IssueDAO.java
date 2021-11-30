@@ -21,7 +21,7 @@ public class IssueDAO implements IssueDAOInterface {
     @Override
     public List<Issue> getAllIssue() {
         Session session = sessionFactory.getCurrentSession();
-        List<Issue> issueList= session.createQuery("from Issue", Issue.class).getResultList();
+        List<Issue> issueList = session.createQuery("from Issue", Issue.class).getResultList();
 
 
         return issueList;
@@ -30,15 +30,15 @@ public class IssueDAO implements IssueDAOInterface {
     @Override
     public void saveNewIssue(Issue issue) {
         Session session = sessionFactory.getCurrentSession();
-session.saveOrUpdate(issue);
+        session.saveOrUpdate(issue);
     }
 
     @Override
     public List<IssueComment> getCommentList(int id) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createSQLQuery("SELECT * FROM issue_tracker.comments where issue_id = :issue_id").addEntity(IssueComment.class);
-query.setParameter("issue_id", id);
-return (List<IssueComment>)query.list();
+        query.setParameter("issue_id", id);
+        return (List<IssueComment>) query.list();
 
     }
 
@@ -51,8 +51,8 @@ return (List<IssueComment>)query.list();
     @Override
     public List<Issue> sortByStatus(String requestedStatus) {
         Session session = sessionFactory.getCurrentSession();
-Query query = session.createQuery("from Issue I where I.status = :requestedStatus");
-query.setParameter("requestedStatus", requestedStatus);
+        Query query = session.createQuery("from Issue I where I.status = :requestedStatus");
+        query.setParameter("requestedStatus", requestedStatus);
 
         return (List<Issue>) query.getResultList();
     }

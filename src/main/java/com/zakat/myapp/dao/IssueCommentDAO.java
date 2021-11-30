@@ -17,7 +17,7 @@ public class IssueCommentDAO implements IssueCommentDAOInterface {
     public void saveNewIssueComment(IssueComment newIssueComment) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(newIssueComment);
-            }
+    }
 
 
 }

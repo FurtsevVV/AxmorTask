@@ -10,11 +10,11 @@ public interface IssueServiceInterface {
 
     public List<Issue> getAllIssue();
 
-   public void saveNewIssue(Issue issue);
+    public void saveNewIssue(Issue issue);
 
-  public   List<IssueComment> getCommentList(int id);
+    public List<IssueComment> getCommentList(int id);
 
-   public Issue getIssueById(int id);
+    public Issue getIssueById(int id);
 
-   public List<Issue> sortByStatus(String requestedStatus);
+    public List<Issue> sortByStatus(String requestedStatus);
 }

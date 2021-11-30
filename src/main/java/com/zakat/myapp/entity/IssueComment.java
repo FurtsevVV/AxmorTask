@@ -24,7 +24,7 @@ public class IssueComment {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "issue_id")
-        private Issue issue;
+    private Issue issue;
 
     public IssueComment() {
     }

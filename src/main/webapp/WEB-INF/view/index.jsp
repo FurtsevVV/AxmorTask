@@ -19,7 +19,6 @@
 
     <tr>
         <td>Sort by Status:</td> <td> <form:select path="sortedStatus">
-<%--        <form:option value="No value" label="No value"/>--%>
         <form:option value="Created" label="Created"/>
         <form:option value="Resolved" label="Resolved"/>
         <form:option value="Closed" label="Closed"/>

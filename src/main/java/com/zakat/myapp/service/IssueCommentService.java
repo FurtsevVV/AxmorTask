@@ -15,7 +15,7 @@ import java.util.Calendar;
 public class IssueCommentService implements IssueCommentServiceInterface {
 
     @Autowired
-private IssueCommentDAO issueCommentDAO;
+    private IssueCommentDAO issueCommentDAO;
 
     @Autowired
     private IssueDAO issueDAO;
@@ -24,17 +24,17 @@ private IssueCommentDAO issueCommentDAO;
     @Override
     @Transactional
     public void saveNewIssueComment(IssueComment issueComment, int issueIdFromComment) {
-IssueComment newIssueComment = new IssueComment();
-newIssueComment.setCommentAuthor(issueComment.getCommentAuthor());
-newIssueComment.setComment(issueComment.getComment());
-newIssueComment.setStatusOfComment(issueComment.getStatusOfComment());
+        IssueComment newIssueComment = new IssueComment();
+        newIssueComment.setCommentAuthor(issueComment.getCommentAuthor());
+        newIssueComment.setComment(issueComment.getComment());
+        newIssueComment.setStatusOfComment(issueComment.getStatusOfComment());
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Calendar calendar = Calendar.getInstance();
         String date = formatForDateNow.format(calendar.getTime());
         newIssueComment.setDateOfComment(date);
         Issue issue = issueDAO.getIssueById(issueIdFromComment);
-newIssueComment.setIssue(issue);
+        newIssueComment.setIssue(issue);
 
-issueCommentDAO.saveNewIssueComment(newIssueComment);
+        issueCommentDAO.saveNewIssueComment(newIssueComment);
     }
 }
