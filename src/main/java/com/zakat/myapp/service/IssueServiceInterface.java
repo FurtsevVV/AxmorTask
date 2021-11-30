@@ -15,4 +15,6 @@ public interface IssueServiceInterface {
   public   List<IssueComment> getCommentList(int id);
 
    public Issue getIssueById(int id);
+
+   public List<Issue> sortByStatus(String requestedStatus);
 }

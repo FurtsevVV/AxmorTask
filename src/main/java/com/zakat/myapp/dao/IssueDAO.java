@@ -47,4 +47,13 @@ return (List<IssueComment>)query.list();
         Session session = sessionFactory.getCurrentSession();
         return session.get(Issue.class, id);
     }
+
+    @Override
+    public List<Issue> sortByStatus(String requestedStatus) {
+        Session session = sessionFactory.getCurrentSession();
+Query query = session.createQuery("from Issue I where I.status = :requestedStatus");
+query.setParameter("requestedStatus", requestedStatus);
+
+        return (List<Issue>) query.getResultList();
+    }
 }

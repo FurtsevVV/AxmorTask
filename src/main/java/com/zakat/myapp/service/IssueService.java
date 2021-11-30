@@ -29,7 +29,9 @@ public class IssueService implements IssueServiceInterface {
     @Override
     @Transactional
     public void saveNewIssue(Issue issue) {
-issue.setStatus("Created");
+        if(issue.getId()==0) {
+            issue.setStatus("Created");
+        }
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Calendar calendar = Calendar.getInstance();
         String date = formatForDateNow.format(calendar.getTime());
@@ -47,5 +49,11 @@ issueDAO.saveNewIssue(issue);
     @Transactional
     public Issue getIssueById(int id) {
        return issueDAO.getIssueById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Issue> sortByStatus(String requestedStatus) {
+        return issueDAO.sortByStatus(requestedStatus);
     }
 }

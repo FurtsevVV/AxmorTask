@@ -3,6 +3,7 @@ package com.zakat.myapp.controller;
 
 import com.zakat.myapp.entity.Issue;
 import com.zakat.myapp.entity.IssueComment;
+import com.zakat.myapp.entity.SortedStatus;
 import com.zakat.myapp.service.IssueCommentServiceInterface;
 import com.zakat.myapp.service.IssueServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ private IssueServiceInterface issueService;
     @RequestMapping("/")
 public String mainScreen(Model model) {
     List<Issue> issuesList = issueService.getAllIssue();
+        SortedStatus sortedStatus = new SortedStatus();
+        model.addAttribute("sortedStatus", sortedStatus);
     model.addAttribute("allIssues", issuesList);
     return "index";
 }
@@ -68,8 +71,21 @@ public String mainScreen(Model model) {
         }
     System.out.println(issueComment.toString());
     int issueIdFromComment = issueComment.getIssue().getId();
+    Issue issueFromComment = issueService.getIssueById(issueIdFromComment);
+    System.out.println(issueIdFromComment);
+    issueFromComment.setStatus(issueComment.getStatusOfComment());
+    System.out.println(issueFromComment);
+    issueService.saveNewIssue(issueFromComment);
     issueCommentService.saveNewIssueComment(issueComment, issueIdFromComment);
     return "redirect:/";
+}
+
+@RequestMapping("/sortByStatus")
+    public String sortByStatus(@ModelAttribute("sortedStatus")SortedStatus sortedStatus, Model model){
+String requestedStatus = sortedStatus.getSortedStatus();
+List<Issue> sortedIssueList = issueService.sortByStatus(requestedStatus);
+model.addAttribute("sortedIssue", sortedIssueList);
+return "sorting-issue";
 }
 
 

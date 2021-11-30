@@ -12,6 +12,26 @@
 
 <input type="button" value="Add Issue" onclick="window.location.href='newIssue'"/>
 
+<br>
+<h3>Sorting</h3>
+<form:form modelAttribute="sortedStatus" action="/sortByStatus">
+<table border="1" width="400">
+
+    <tr>
+        <td>Sort by Status:</td> <td> <form:select path="sortedStatus">
+<%--        <form:option value="No value" label="No value"/>--%>
+        <form:option value="Created" label="Created"/>
+        <form:option value="Resolved" label="Resolved"/>
+        <form:option value="Closed" label="Closed"/>
+            </form:select>
+    </td>
+    </tr>
+
+    <td colspan="3"><input type="submit" value="Sorting" /></td>
+</table>
+</form:form>
+
+
 <table>
     <tr>
         <th>Issue: </th>
@@ -34,11 +54,6 @@
     </c:forEach>
 
 </table>
-
-
 <br>
-
-
-
 </body>
 </html>
